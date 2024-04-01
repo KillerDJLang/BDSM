@@ -2,7 +2,6 @@
 using UnityEngine;
 using Comfort.Common;
 using System.Threading.Tasks;
-using BDSM;
 
 namespace BDSM
 {

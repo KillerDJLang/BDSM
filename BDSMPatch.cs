@@ -2,7 +2,6 @@
 using EFT;
 using System.Reflection;
 using Aki.Reflection.Patching;
-using BDSM;
 
 namespace BDSM
 {

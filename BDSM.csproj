@@ -1,140 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2CD99161-035B-4536-BF1C-1C447E99933D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BDSM</RootNamespace>
+    <TargetFramework>net472</TargetFramework>
     <AssemblyName>BDSM</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <Description>An sptarkov mod to add dead body cleanup</Description>
+    <Version>1.1.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>BDSM</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>Dependancies\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="0Harmony20">
-      <HintPath>Dependancies\0Harmony20.dll</HintPath>
-    </Reference>
-    <Reference Include="aki-custom">
-      <HintPath>Dependancies\aki-custom.dll</HintPath>
-    </Reference>
-    <Reference Include="aki-singleplayer">
-      <HintPath>Dependancies\aki-singleplayer.dll</HintPath>
-    </Reference>
-    <Reference Include="Aki.Common">
-      <HintPath>Dependancies\Aki.Common.dll</HintPath>
-    </Reference>
     <Reference Include="Aki.Reflection">
-      <HintPath>Dependancies\Aki.Reflection.dll</HintPath>
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\Aki.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>Dependancies\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>Dependancies\BepInEx.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx.Harmony">
-      <HintPath>Dependancies\BepInEx.Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx.Preloader">
-      <HintPath>Dependancies\BepInEx.Preloader.dll</HintPath>
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="Comfort">
-      <HintPath>Dependancies\Comfort.dll</HintPath>
-    </Reference>
-    <Reference Include="HarmonyXInterop">
-      <HintPath>Dependancies\HarmonyXInterop.dll</HintPath>
-    </Reference>
-    <Reference Include="ItemComponent.Types">
-      <HintPath>Dependancies\ItemComponent.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Dependancies\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>Dependancies\Mono.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>Dependancies\Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>Dependancies\Mono.Cecil.Rocks.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>Dependancies\MonoMod.RuntimeDetour.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Utils">
-      <HintPath>Dependancies\MonoMod.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>deps\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>Dependancies\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Dependancies\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\Comfort.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>Dependancies\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>Dependancies\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>Dependancies\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>Dependancies\UnityEngine.InputLegacyModule.dll</HintPath>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>Dependancies\UnityEngine.InputModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>Dependancies\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Dependancies\UnityEngine.UI.dll</HintPath>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\!Raid-Overhaul-3.8.0\3.8 Deps\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BDSMPatch.cs" />
-    <Compile Include="BDSMPlugin.cs" />
-    <Compile Include="TheMaid.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
