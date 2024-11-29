@@ -10,7 +10,7 @@ namespace BDSM
     [BepInPlugin("DJ.BDSM", "BDSM", "1.3.0")]
     public class Plugin : BaseUnityPlugin
     {
-        public const int TarkovVersion = 32291;
+        public const int TarkovVersion = 33420;
 
         internal static TheMaid Script;
         internal static GameObject Hook;
