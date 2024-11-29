@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using UnityEngine;
 using DrakiaXYZ.VersionChecker;
 using System;
@@ -7,10 +7,10 @@ using BDSM.Helpers;
 
 namespace BDSM
 {
-    [BepInPlugin("DJ.BDSM", "BDSM", "1.2.0")]
+    [BepInPlugin("DJ.BDSM", "BDSM", "1.3.0")]
     public class Plugin : BaseUnityPlugin
     {
-        public const int TarkovVersion = 30626;
+        public const int TarkovVersion = 32291;
 
         internal static TheMaid Script;
         internal static GameObject Hook;
