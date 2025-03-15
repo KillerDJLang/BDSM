@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
@@ -12,28 +12,28 @@
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\..\..\BepInEx\core\BepInEx.dll</HintPath>
+      <HintPath>..\..\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="Comfort">
-      <HintPath>..\..\Managed\Comfort.dll</HintPath>
+      <HintPath>..\..\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath>
     </Reference>
     <Reference Include="spt-reflection">
-      <HintPath>..\..\..\BepInEx\plugins\spt\spt-reflection.dll</HintPath>
+      <HintPath>..\..\BepInEx\plugins\spt\spt-reflection.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>..\..\EscapeFromTarkov_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>..\..\EscapeFromTarkov_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
