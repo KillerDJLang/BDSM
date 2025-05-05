@@ -1,15 +1,14 @@
 ﻿using EFT;
 using UnityEngine;
-using Comfort.Common;
 using System.Threading.Tasks;
 using System.Collections;
 using BDSM.Helpers;
 
 namespace BDSM.Patches
 {
-    public class TheMaid : MonoBehaviour
+    internal class TheMaid : MonoBehaviour
     {
-        private bool _MaidOnStandby = false;
+        private static bool _MaidOnStandby = false;
 
         void Update()
         {
@@ -25,16 +24,16 @@ namespace BDSM.Patches
             }
         }
 
-        private IEnumerator StartClean()
+        private static IEnumerator StartClean()
         {
             yield return new WaitForSeconds(DJConfig.TimeToClean.Value * 60f);
 
-            if (Gameworld != null && Gameworld.AllAlivePlayersList != null && Gameworld.AllAlivePlayersList.Count > 0 && !(Myplayer is HideoutPlayer))
+            if (Ready())
             {
                 Task.Delay(10000);
                 foreach (BotOwner bot in FindObjectsOfType<BotOwner>())
                 {
-                    if (!bot.HealthController.IsAlive && Vector3.Distance(Myplayer.Transform.position, bot.Transform.position) >= DJConfig.DistToClean.Value)
+                    if (!bot.HealthController.IsAlive && Vector3.Distance(Plugin.MyPlayer.Transform.position, bot.Transform.position) >= DJConfig.DistToClean.Value)
                     {
                         bot.gameObject.SetActive(false);
                     }
@@ -51,12 +50,21 @@ namespace BDSM.Patches
             yield break;
         }
 
-        public bool Ready() => Gameworld != null && Gameworld.AllAlivePlayersList != null && Gameworld.AllAlivePlayersList.Count > 0 && !(Myplayer is HideoutPlayer);
+        internal static void RunMaidService()
+        {
+            if (Ready())
+            {
+                Task.Delay(10000);
+                foreach (BotOwner bot in FindObjectsOfType<BotOwner>())
+                {
+                    if (!bot.HealthController.IsAlive && Vector3.Distance(Plugin.MyPlayer.Transform.position, bot.Transform.position) >= DJConfig.DistToClean.Value)
+                    {
+                        bot.gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
 
-        Player Myplayer
-        { get => Gameworld.AllAlivePlayersList[0]; }
-
-        GameWorld Gameworld
-        { get => Singleton<GameWorld>.Instance; }
+        private static bool Ready() => Plugin.MyGameworld != null && Plugin.MyGameworld.AllAlivePlayersList != null && Plugin.MyGameworld.AllAlivePlayersList.Count > 0 && !(Plugin.MyPlayer is HideoutPlayer);
     }
 }

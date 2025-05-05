@@ -1,9 +1,11 @@
 ﻿using BepInEx.Configuration;
+using UnityEngine;
 
 namespace BDSM.Helpers
 {
     public static class DJConfig
     {
+        public static ConfigEntry<bool> CleanBodiesAsap { get; set; }
         public static ConfigEntry<bool> EnableClean;
         public static ConfigEntry<int> TimeToClean;
         public static ConfigEntry<int> DistToClean;
@@ -14,6 +16,14 @@ namespace BDSM.Helpers
         public static void BindConfig(ConfigFile cfg)
         {
             #region Body Clean Up
+
+            CleanBodiesAsap = cfg.Bind(
+                "Body Cleanup Configs",
+                "Maid Service",
+                true,
+                new ConfigDescription("Clean bodies immediately. For when you go on too much of a killing spree.",
+                null,
+                new ConfigurationManagerAttributes { Order = 4, CustomDrawer = MaidService }));
 
             EnableClean = cfg.Bind(
                 "Body Cleanup Configs",
@@ -60,6 +70,15 @@ namespace BDSM.Helpers
                 new ConfigurationManagerAttributes { IsAdvanced = false, ShowRangeAsPercent = true, Order = 1 }));
 
             #endregion
+        }
+
+        public static void MaidService(ConfigEntryBase entry)
+        {
+            bool button = GUILayout.Button("Maid Service", GUILayout.ExpandWidth(true));
+            if (button)
+            {
+                Patches.TheMaid.RunMaidService();
+            }
         }
     }
 }

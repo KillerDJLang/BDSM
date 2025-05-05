@@ -6,7 +6,7 @@ using BDSM.Helpers;
 
 namespace BDSM.Patches
 {
-    public class OnDeadPatch : ModulePatch
+    internal class OnDeadPatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod() =>
             typeof(Player).GetMethod("OnDead", BindingFlags.Instance | BindingFlags.Public);
