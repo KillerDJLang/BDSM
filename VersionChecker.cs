@@ -1,9 +1,9 @@
-﻿using BepInEx;
+﻿using System;
+using System.Diagnostics;
+using BepInEx;
 using BepInEx.Bootstrap;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using System;
-using System.Diagnostics;
 using UnityEngine;
 
 namespace DrakiaXYZ.VersionChecker
@@ -14,7 +14,7 @@ namespace DrakiaXYZ.VersionChecker
         // Make sure the version of EFT being run is the correct version, throw an exception and output log message if it isn't
         /// <summary>
         /// Check the currently running program's version against the plugin assembly VersionChecker attribute, and
-        /// return false if they do not match. 
+        /// return false if they do not match.
         /// Optionally add a fake setting to the F12 menu if Config is passed in
         /// </summary>
         /// <param value="Logger">The ManualLogSource to output an error to</param>
@@ -27,7 +27,8 @@ namespace DrakiaXYZ.VersionChecker
             int buildVersion = BDSM.Plugin.TarkovVersion;
             if (currentVersion != buildVersion)
             {
-                string errorMessage = $"ERROR: This version of BDSM v1.1.0 was built for Tarkov {buildVersion}, but you are running {currentVersion}. Please download the correct plugin version.";
+                string errorMessage =
+                    $"ERROR: This version of BDSM v1.1.0 was built for Tarkov {buildVersion}, but you are running {currentVersion}. Please download the correct plugin version.";
                 Logger.LogError(errorMessage);
                 Chainloader.DependencyErrors.Add(errorMessage);
 
@@ -35,16 +36,23 @@ namespace DrakiaXYZ.VersionChecker
                 {
                     // TypeofThis results in a bogus config entry in the BepInEx config file for the plugin, but it shouldn't hurt anything
                     // We leave the "section" parameter empty so there's no section header drawn
-                    Config.Bind("", "TarkovVersion", "", new ConfigDescription(
-                        errorMessage, null, new ConfigurationManagerAttributes
-                        {
-                            CustomDrawer = ErrorLabelDrawer,
-                            ReadOnly = true,
-                            HideDefaultButton = true,
-                            HideSettingName = true,
-                            Category = null
-                        }
-                    ));
+                    Config.Bind(
+                        "",
+                        "TarkovVersion",
+                        "",
+                        new ConfigDescription(
+                            errorMessage,
+                            null,
+                            new ConfigurationManagerAttributes
+                            {
+                                CustomDrawer = ErrorLabelDrawer,
+                                ReadOnly = true,
+                                HideDefaultButton = true,
+                                HideSettingName = true,
+                                Category = null,
+                            }
+                        )
+                    );
                 }
 
                 return false;

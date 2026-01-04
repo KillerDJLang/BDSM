@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>BDSM</AssemblyName>
     <Description>An SPT mod to add dead body cleanup</Description>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -38,5 +37,4 @@
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)\..\..\BepInEx\plugins\$(TargetFileName)&quot;" />
   </Target>
-
 </Project>

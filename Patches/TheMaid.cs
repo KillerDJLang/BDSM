@@ -1,26 +1,26 @@
-﻿using EFT;
-using UnityEngine;
+﻿using System.Collections;
 using System.Threading.Tasks;
-using System.Collections;
 using BDSM.Helpers;
+using EFT;
+using UnityEngine;
 
 namespace BDSM.Patches
 {
     internal class TheMaid : MonoBehaviour
     {
-        private static bool _MaidOnStandby = false;
+        private static bool _maidOnStandby = false;
 
-        void Update()
+        private void Update()
         {
             if (!Ready() || !DJConfig.EnableClean.Value)
             {
                 return;
             }
 
-            if (!_MaidOnStandby)
+            if (!_maidOnStandby)
             {
                 StaticManager.Instance.StartCoroutine(StartClean());
-                _MaidOnStandby = true;
+                _maidOnStandby = true;
             }
         }
 
@@ -31,22 +31,19 @@ namespace BDSM.Patches
             if (Ready())
             {
                 Task.Delay(10000);
-                foreach (BotOwner bot in FindObjectsOfType<BotOwner>())
+                foreach (var bot in FindObjectsOfType<BotOwner>())
                 {
-                    if (!bot.HealthController.IsAlive && Vector3.Distance(Plugin.MyPlayer.Transform.position, bot.Transform.position) >= DJConfig.DistToClean.Value)
+                    if (
+                        !bot.HealthController.IsAlive
+                        && Vector3.Distance(Plugin.MyPlayer.Transform.position, bot.Transform.position) >= DJConfig.DistToClean.Value
+                    )
                     {
                         bot.gameObject.SetActive(false);
                     }
                 }
             }
 
-            else
-            {
-                _MaidOnStandby = false;
-                yield break;
-            }
-
-            _MaidOnStandby = false;
+            _maidOnStandby = false;
             yield break;
         }
 
@@ -55,9 +52,12 @@ namespace BDSM.Patches
             if (Ready())
             {
                 Task.Delay(10000);
-                foreach (BotOwner bot in FindObjectsOfType<BotOwner>())
+                foreach (var bot in FindObjectsOfType<BotOwner>())
                 {
-                    if (!bot.HealthController.IsAlive && Vector3.Distance(Plugin.MyPlayer.Transform.position, bot.Transform.position) >= DJConfig.DistToClean.Value)
+                    if (
+                        !bot.HealthController.IsAlive
+                        && Vector3.Distance(Plugin.MyPlayer.Transform.position, bot.Transform.position) >= DJConfig.DistToClean.Value
+                    )
                     {
                         bot.gameObject.SetActive(false);
                     }
@@ -65,6 +65,12 @@ namespace BDSM.Patches
             }
         }
 
-        private static bool Ready() => Plugin.MyGameworld != null && Plugin.MyGameworld.AllAlivePlayersList != null && Plugin.MyGameworld.AllAlivePlayersList.Count > 0 && !(Plugin.MyPlayer is HideoutPlayer);
+        private static bool Ready()
+        {
+            return Plugin.MyGameworld != null
+                && Plugin.MyGameworld.AllAlivePlayersList != null
+                && Plugin.MyGameworld.AllAlivePlayersList.Count > 0
+                && !(Plugin.MyPlayer is HideoutPlayer);
+        }
     }
 }

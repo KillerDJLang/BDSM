@@ -1,29 +1,33 @@
-﻿using BepInEx;
-using UnityEngine;
-using DrakiaXYZ.VersionChecker;
-using Comfort.Common;
-using System;
-using BDSM.Patches;
+﻿using System;
 using BDSM.Helpers;
+using BDSM.Patches;
+using BepInEx;
+using Comfort.Common;
+using DrakiaXYZ.VersionChecker;
 using EFT;
+using UnityEngine;
 
 namespace BDSM
 {
-    [BepInPlugin("DJ.BDSM", "Body Disposal Service Maid", "1.4.1")]
+    [BepInPlugin("nameless.bodydisposal", "Body Disposal Service Maid", "1.5.0")]
     public class Plugin : BaseUnityPlugin
     {
-        public const int TarkovVersion = 35392;
+        public const int TarkovVersion = 40087;
 
         internal static TheMaid Script;
-        internal static GameObject Hook;
+        private static GameObject _hook;
 
         internal static Player MyPlayer
-        { get => MyGameworld.MainPlayer; }
+        {
+            get { return MyGameworld.MainPlayer; }
+        }
 
         internal static GameWorld MyGameworld
-        { get => Singleton<GameWorld>.Instance; }
+        {
+            get { return Singleton<GameWorld>.Instance; }
+        }
 
-        void Awake()
+        private void Awake()
         {
             if (!VersionChecker.CheckEftVersion(Logger, Info, Config))
             {
@@ -33,9 +37,9 @@ namespace BDSM
             // Bind the configs
             DJConfig.BindConfig(Config);
 
-            Hook = new GameObject("IR Object");
-            Script = Hook.AddComponent<TheMaid>();
-            DontDestroyOnLoad(Hook);
+            _hook = new GameObject("IR Object");
+            Script = _hook.AddComponent<TheMaid>();
+            DontDestroyOnLoad(_hook);
 
             new OnDeadPatch().Enable();
         }
